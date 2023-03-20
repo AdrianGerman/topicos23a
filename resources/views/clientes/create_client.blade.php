@@ -146,7 +146,7 @@
                 <form class="mt-4 mb-3 d-md-none">
                     <div class="input-group input-group-rounded input-group-merge">
                         <input type="search" class="form-control form-control-rounded form-control-prepended"
-                            placeholder="Search" aria-label="Search">
+                            placeholder="Buscar" aria-label="Search">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <span class="fa fa-search"></span>
@@ -176,7 +176,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ route('user.index') }}">
+                                    <a class="nav-link" href="{{ route('user.index') }}">
                                         {{ __('Gestión de usuarios') }}
                                     </a>
                                 </li>
@@ -185,7 +185,7 @@
                     </li>
 
                     <li class="nav-item ">
-                        <a class="nav-link" href="{{ route('clients') }}">
+                        <a class="nav-link active" href="{{ route('clients') }}">
                             <i class="ni ni-bullet-list-67 text-orange"></i> {{ __('Clientes') }}
                         </a>
                     </li>
@@ -200,7 +200,6 @@
                             <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('icons') }}">
                             <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
@@ -227,7 +226,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                             </div>
-                            <input class="form-control" placeholder="Search" type="text">
+                            <input class="form-control" placeholder="Buscar" type="text">
                         </div>
                     </div>
                 </form>
@@ -277,6 +276,7 @@
                 </ul>
             </div>
         </nav>
+
         <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
             <div class="container-fluid">
 
@@ -287,121 +287,142 @@
 
                         </div>
 
-
-
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <!-- Formulario -->
         <div class="container-fluid mt--7">
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
                         <div class="card-header border-0">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <h3 class="mb-0">Usuarios</h3>
+                            <div class="card-header card-header-primary">
+                                <h1 class="card-title">Clientes</h1>
+                                <p class="card-category">Ingresa tus datos</p>
+                            </div>
+                            <form method="post" action="{{ route('cliente.save') }}" autocomplete="off">
+                                <div class="row align-items-center">
+                                    <div class="card-body">
+                                        @csrf
+
+                                        <div class="row{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                            <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="name"
+                                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('Nombre') }}">
+                                                @include('alerts.feedback', ['field' => 'name'])
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                            <label for="email" class="col-sm-2 col-form-label">Correo
+                                                electrónico</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="email"
+                                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('Correo electrónico') }}">
+                                                @include('alerts.feedback', ['field' => 'email'])
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row{{ $errors->has('telefono') ? ' has-danger' : '' }}">
+                                            <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="telefono"
+                                                    class="form-control{{ $errors->has('telefono') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('Telefono') }}">
+                                                @include('alerts.feedback', ['field' => 'telefono'])
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row{{ $errors->has('direccion') ? ' has-danger' : '' }}">
+                                            <label for="direccion" class="col-sm-2 col-form-label">Dirección</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" name="direccion"
+                                                    class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}"
+                                                    placeholder="{{ __('Dirección') }}">
+                                                @include('alerts.feedback', ['field' => 'direccion'])
+                                            </div>
+                                        </div>
+                                        <br>
+
+
+                                    </div>
+                                    <div class="card-footer py-4">
+                                        <nav class="d-flex justify-content-end" aria-label="...">
+                                        </nav>
+                                    </div>
                                 </div>
-                                <div class="col-4 text-right">
-                                    <a href="/create" class="btn btn-sm btn-primary">Agregar usuario</a>
+                        </div>
+
+                        <!--Footer-->
+                        <div class="card-footer ml-auto mr-auto">
+                            <button type="submit" class="btn btn-primary">{{ __('Registrar') }}</button>
+                        </div>
+                        </form>
+                        <div class="ml-auto mr-auto">
+                            <a href="{{ route('clients') }}"><button class="btn btn-primary">Volver</button></a>
+                        </div>
+                        <!--End footer-->
+                    </div>
+
+
+
+
+
+                    <footer class="footer">
+                        <div class="row align-items-center justify-content-xl-between">
+                            <div class="col-xl-6">
+                                <div class="copyright text-center text-xl-left text-muted">
+                                    © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
+                                        target="_blank">Creative Tim</a> &amp;
+                                    <a href="https://www.updivision.com" class="font-weight-bold ml-1"
+                                        target="_blank">Updivision</a>
                                 </div>
                             </div>
+                            <div class="col-xl-6">
+                                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com" class="nav-link"
+                                            target="_blank">Creative Tim</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.updivision.com" class="nav-link"
+                                            target="_blank">Updivision</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://www.creative-tim.com/presentation" class="nav-link"
+                                            target="_blank">About Us</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="http://blog.creative-tim.com" class="nav-link"
+                                            target="_blank">Blog</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
+                                            class="nav-link" target="_blank">MIT License</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-
-                        <div class="col-12">
-                        </div>
-
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Fecha de creación</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user -> name }}</td>
-                                                <td>{{ $user -> email }}</td>
-                                                <td>{{ $user -> created_at }}</td>
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="{{route('user.edit', $user->id) }}">Editar</a>
-                                                            <a class="dropdown-item" href="{{route('user.delete', ['id' => $user->id])}}">Eliminar</a>
-
-                                                        </div>
-                                                    </div>
-                                                </td>
-
-                                            </tr>
-                                        @endforeach
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer py-4">
-                            <nav class="d-flex justify-content-end" aria-label="...">
-
-                            </nav>
-                        </div>
-                    </div>
+                    </footer>
                 </div>
             </div>
 
-            <footer class="footer">
-                <div class="row align-items-center justify-content-xl-between">
-                    <div class="col-xl-6">
-                        <div class="copyright text-center text-xl-left text-muted">
-                            © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                                target="_blank">Creative Tim</a> &amp;
-                            <a href="https://www.updivision.com" class="font-weight-bold ml-1"
-                                target="_blank">Updivision</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative
-                                    Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link"
-                                    target="_blank">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
-                                    class="nav-link" target="_blank">MIT License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
+
+            <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
+            <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 
-    <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <!-- Argon JS -->
-    <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+            <!-- Argon JS -->
+            <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 </body>
 
 </html>

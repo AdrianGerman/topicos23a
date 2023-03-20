@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<html lang="en">
+
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
     <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
            <!-- Extra details for Live View on GitHub Pages -->
@@ -171,18 +174,18 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link active" href="{{ route('map') }}">
+                    <a class="nav-link active" href="{{ route('clients') }}">
                         <i class="ni ni-bullet-list-67 text-orange"></i> {{ __('Clientes') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
+                    <a class="nav-link" href="{{ route('products') }}">
                       <i class="ni ni-archive-2 text-default"></i>
                       <span class="nav-link-text">Productos</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('upgrade') }}">
+                    <a class="nav-link" href="{{ route('vendor') }}">
                         <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                     </a>
                 </li>
@@ -191,13 +194,13 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
                     </a>
                 </li>
-                
+
             </ul>
         <!-- Divider -->
-        
+
     </div>
 </div>
-</nav>                
+</nav>
     <div class="main-content">
         <!-- Top navbar -->
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -257,19 +260,19 @@
         </li>
     </ul>
 </div>
-</nav>    
+</nav>
             <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
 <div class="container-fluid">
-    
+
     <div class="header-body">
         <!-- Card stats -->
         <div class="row">
             <div class="col-xl-3 col-lg-6">
-                
+
             </div>
-            
-            
-            
+
+
+
         </div>
     </div>
 </div>
@@ -284,11 +287,11 @@
                             <h3 class="mb-0">Clientes</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="" class="btn btn-sm btn-primary">Agregar clientes</a>
+                            <a href="/create_client" class="btn btn-sm btn-primary">Agregar clientes</a>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-12">
                                         </div>
 
@@ -304,74 +307,84 @@
                             </tr>
                         </thead>
                         <tbody>
-                                                                <tr>
-                                    <td>Cliente 1</td>
-                                    <td>
-                                        <a href="mailto:admin@argon.com">cliente1@gmail.com</a>
-                                    </td>
-                                    <td>3861061529</td>
-                                    <td>Lopez Cotilla #20</td>
-
+                            @foreach ($clientes as $cliente)
+                                <tr>
+                                    <td>{{ $cliente->name }}</td>
+                                    <td>{{ $cliente->email }}</td>
+                                    <td>{{ $cliente->telefono }}</td>
+                                    <td>{{ $cliente->direccion }}</td>
                                     <td class="text-right">
                                         <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v"></i>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                                                        <a class="dropdown-item" href="">Editar</a>
-                                                                                                        <a class="dropdown-item" href="">Eliminar</a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="{{route('cliente.edit', $cliente->id) }}">Editar</a>
+                                            <a class="dropdown-item" href="{{route('cliente.delete', ['id' => $cliente->id])}}">Eliminar</a>
 
-                                                                                                </div>
+                                            </div>
                                         </div>
                                     </td>
+
                                 </tr>
-                                                        </tbody>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
-                <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        
-                    </nav>
-                </div>
-            </div>
-        </div>
+                <div class="card-footer
+        py-4">
+    <nav class="d-flex justify-content-end" aria-label="...">
+
+    </nav>
     </div>
-        
-    <footer class="footer">
-<div class="row align-items-center justify-content-xl-between">
-<div class="col-xl-6">
-    <div class="copyright text-center text-xl-left text-muted">
-        © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a> &amp;
-        <a href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">Updivision</a>
     </div>
-</div>
-<div class="col-xl-6">
-    <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-        <li class="nav-item">
-            <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-        </li>
-        <li class="nav-item">
-            <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
-        </li>
-        <li class="nav-item">
-            <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-        </li>
-        <li class="nav-item">
-            <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-        </li>
-        <li class="nav-item">
-            <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-        </li>
-    </ul>
-</div>
-</div></footer>    </div>
+    </div>
     </div>
 
-    
+    <footer class="footer">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative
+                        Tim</a> &amp;
+                    <a href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">Updivision</a>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                    <li class="nav-item">
+                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
+                            Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
+                            class="nav-link" target="_blank">MIT License</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    </div>
+    </div>
+
+
     <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
-            
+    <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-</body></html>
+    </body>
+
+</html>

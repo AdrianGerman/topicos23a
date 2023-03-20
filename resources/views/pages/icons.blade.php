@@ -63,18 +63,18 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('map') }}">
+                    <a class="nav-link" href="{{ route('clients') }}">
                         <i class="ni ni-bullet-list-67 text-orange"></i> {{ __('Clientes') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
+                    <a class="nav-link" href="{{ route('products') }}">
                       <i class="ni ni-archive-2 text-default"></i>
                       <span class="nav-link-text">Productos</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('upgrade') }}">
+                    <a class="nav-link" href="{{ route('vendor') }}">
                         <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                     </a>
                 </li>
@@ -83,10 +83,10 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
                     </a>
                 </li>
-                
+
             </ul>
           <!-- Divider -->
-          
+
         </div>
       </div>
     </div>

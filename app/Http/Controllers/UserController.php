@@ -3,19 +3,88 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the users
-     *
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\View\View
-     */
+
     public function index(User $model)
     {
-        return view('users.index');
+        $users = User::all();
+        return view('users.index',compact('users'));
+
     }
+
+    public function save(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $data = $request->all();
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->save();
+        return redirect('users');
+    }
+
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+        return redirect('users');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        //Actualizar datos
+        $usuario = User::findOrFail($id);
+        $usuario->name = $request->input('name');
+        $usuario->email = $request->input('email');
+        $usuario->password = Hash::make($request->input('password'));
+        $usuario->save();
+        return redirect('users');
+    }
+
+    public function edit($id)
+    {
+        $usuario = User::findOrFail($id);
+        return view('users.edit', compact('usuario'));
+    }
+
+
+
+
 }

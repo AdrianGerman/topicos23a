@@ -133,7 +133,7 @@
         <!-- Form -->
         <form class="mt-4 mb-3 d-md-none">
             <div class="input-group input-group-rounded input-group-merge">
-                <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Buscar" aria-label="Search">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <span class="fa fa-search"></span>
@@ -162,7 +162,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">
+                                <a class="nav-link active" href="{{ route('user.index') }}">
                                     {{ __('Gestión de usuarios') }}
                                 </a>
                             </li>
@@ -171,18 +171,18 @@
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link" href="{{ route('map') }}">
+                    <a class="nav-link" href="{{ route('clients') }}">
                         <i class="ni ni-bullet-list-67 text-orange"></i> {{ __('Clientes') }}
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('table') }}">
+                    <a class="nav-link" href="{{ route('products') }}">
                       <i class="ni ni-archive-2 text-default"></i>
                       <span class="nav-link-text">Productos</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('upgrade') }}">
+                    <a class="nav-link" href="{{ route('vendor') }}">
                         <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                     </a>
                 </li>
@@ -191,13 +191,13 @@
                         <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
                     </a>
                 </li>
-                
+
             </ul>
         <!-- Divider -->
-        
+
     </div>
 </div>
-</nav>                
+</nav>
     <div class="main-content">
         <!-- Top navbar -->
 <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
@@ -211,7 +211,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                 </div>
-                <input class="form-control" placeholder="Search" type="text">
+                <input class="form-control" placeholder="Buscar" type="text">
             </div>
         </div>
     </form>
@@ -257,85 +257,108 @@
         </li>
     </ul>
 </div>
-</nav>    
+</nav>
             <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
 <div class="container-fluid">
-    
+
     <div class="header-body">
         <!-- Card stats -->
         <div class="row">
             <div class="col-xl-3 col-lg-6">
-                
+
             </div>
-            
-            
-            
+
+
+
         </div>
     </div>
 </div>
 </div>
+
+
+<!-- Formulario -->
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col">
             <div class="card shadow">
                 <div class="card-header border-0">
-                    <div class="row align-items-center">
-                        <div class="col-8">
-                            <h3 class="mb-0">Proveedores</h3>
-                        </div>
-                        <div class="col-4 text-right">
-                            <a href="" class="btn btn-sm btn-primary">Agregar proveedor</a>
-                        </div>
+                    <div class="card-header card-header-primary">
+                        <h1 class="card-title">Usuarios</h1>
+                        <p class="card-category">Ingresa tus datos</p>
                     </div>
-                </div>
-                
-                <div class="col-12">
-                                        </div>
+                    <form method="post" action="{{ route('user.save') }}" autocomplete="off">
+                        <div class="row align-items-center">
+                            <div class="card-body">
+                                @csrf
 
-                <div class="table-responsive">
-                    <table class="table align-items-center table-flush">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Domicilio</th>
-                                <th scope="col">País</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                                                <tr>
-                                    <td>Ugee</td>
-                                    <td>
-                                        <a href="mailto:admin@argon.com">Ugee@gmail.com</a>
-                                    </td>
-                                    <td>Jaime Hernandez #48</td>
-                                    <td>Mexico-Jalisco</td>
-                                    <td class="text-right">
-                                        <div class="dropdown">
-                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-v"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                                                        <a class="dropdown-item" href="">Editar</a>
-                                                                                                        <a class="dropdown-item" href="">Eliminar</a>
+                                <div class="row{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                    <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="name"
+                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Nombre') }}">
+                                        @include('alerts.feedback', ['field' => 'name'])
+                                    </div>
+                                </div>
+                                <br>
 
-                                                                                                </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                                        </tbody>
-                    </table>
+                                <div class="row{{ $errors->has('email') ? ' has-danger' : '' }}">
+                                    <label for="email" class="col-sm-2 col-form-label">Correo
+                                        electrónico</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="email"
+                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Correo electrónico') }}">
+                                        @include('alerts.feedback', ['field' => 'email'])
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="row{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                    <label for="password" class="col-sm-2 col-form-label">Contraseña</label>
+                                    <div class="col-sm-7">
+                                        <input type="password" name="password"
+                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Contraseña') }}">
+                                        @include('alerts.feedback', ['field' => 'password'])
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="row{{ $errors->has('password') ? ' has-danger' : '' }}">
+                                    <label for="password" class="col-sm-2 col-form-label">Confirmar contraseña</label>
+                                    <div class="col-sm-7">
+                                        <input type="password" name="password_confirmation"
+                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('Confirmar contraseña') }}">
+                                        @include('alerts.feedback', ['field' => 'password'])
+                                    </div>
+                                </div>
+                                <br>
+
+
+
+
+                            </div>
+                            <div class="card-footer py-4">
+                                <nav class="d-flex justify-content-end" aria-label="...">
+                                </nav>
+                            </div>
+                        </div>
                 </div>
-                <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        
-                    </nav>
+
+                <!--Footer-->
+                <div class="card-footer ml-auto mr-auto">
+                    <button type="submit" class="btn btn-primary">{{ __('Registrar') }}</button>
                 </div>
+                </form>
+                <div class="ml-auto mr-auto">
+                    <a href="{{ route('users') }}"><button class="btn btn-primary">Volver</button></a>
+                </div>
+                <!--End footer-->
             </div>
-        </div>
-    </div>
-        
+
+
     <footer class="footer">
 <div class="row align-items-center justify-content-xl-between">
 <div class="col-xl-6">
@@ -366,11 +389,11 @@
 </div></footer>    </div>
     </div>
 
-    
+
     <script src="{{ asset('argon') }}/vendor/jquery/dist/jquery.min.js"></script>
         <script src="{{ asset('argon') }}/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    
-            
+
+
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
 </body></html>

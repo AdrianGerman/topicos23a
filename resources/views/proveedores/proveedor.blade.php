@@ -14,7 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <!-- Icons -->
     <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-    <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link
+        href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
     <!-- Argon CSS -->
     <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
     <!-- Extra details for Live View on GitHub Pages -->
@@ -176,7 +177,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ route('user.index') }}">
+                                    <a class="nav-link" href="{{ route('user.index') }}">
                                         {{ __('Gestión de usuarios') }}
                                     </a>
                                 </li>
@@ -196,11 +197,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('vendor') }}">
+                        <a class="nav-link active" href="{{ route('vendor') }}">
                             <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('icons') }}">
                             <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
@@ -300,10 +300,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Usuarios</h3>
+                                    <h3 class="mb-0">Proveedores</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="/create" class="btn btn-sm btn-primary">Agregar usuario</a>
+                                    <a href="/create_vendor" class="btn btn-sm btn-primary">Agregar proveedor</a>
                                 </div>
                             </div>
                         </div>
@@ -317,82 +317,85 @@
                                     <tr>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Correo</th>
-                                        <th scope="col">Fecha de creación</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Dirección</th>
+                                        <th scope="col">Ciudad</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user -> name }}</td>
-                                                <td>{{ $user -> email }}</td>
-                                                <td>{{ $user -> created_at }}</td>
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="{{route('user.edit', $user->id) }}">Editar</a>
-                                                            <a class="dropdown-item" href="{{route('user.delete', ['id' => $user->id])}}">Eliminar</a>
+                                @foreach ($proveedores as $vendor)
+                                <tr>
+                                    <td>{{ $vendor->name }}</td>
+                                    <td>{{ $vendor->email }}</td>
+                                    <td>{{ $vendor->telefono }}</td>
+                                    <td>{{ $vendor->direccion }}</td>
+                                    <td>{{ $vendor->ciudad }}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="{{route('vendor.edit', $vendor->id) }}">Editar</a>
+                                            <a class="dropdown-item" href="{{route('vendor.delete', ['id' => $vendor->id])}}">Eliminar</a>
 
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                            </div>
+                                        </div>
+                                    </td>
 
-                                            </tr>
-                                        @endforeach
-
+                                </tr>
+                                @endforeach
 
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card-footer py-4">
-                            <nav class="d-flex justify-content-end" aria-label="...">
+                        <div class="card-footer
+        py-4">
+    <nav class="d-flex justify-content-end" aria-label="...">
 
-                            </nav>
-                        </div>
-                    </div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <footer class="footer">
+        <div class="row align-items-center justify-content-xl-between">
+            <div class="col-xl-6">
+                <div class="copyright text-center text-xl-left text-muted">
+                    © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative
+                        Tim</a> &amp;
+                    <a href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">Updivision</a>
                 </div>
             </div>
-
-            <footer class="footer">
-                <div class="row align-items-center justify-content-xl-between">
-                    <div class="col-xl-6">
-                        <div class="copyright text-center text-xl-left text-muted">
-                            © 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                                target="_blank">Creative Tim</a> &amp;
-                            <a href="https://www.updivision.com" class="font-weight-bold ml-1"
-                                target="_blank">Updivision</a>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative
-                                    Tim</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://www.creative-tim.com/presentation" class="nav-link"
-                                    target="_blank">About Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
-                                    class="nav-link" target="_blank">MIT License</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </footer>
+            <div class="col-xl-6">
+                <ul class="nav nav-footer justify-content-center justify-content-xl-end">
+                    <li class="nav-item">
+                        <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative
+                            Tim</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About
+                            Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
+                            class="nav-link" target="_blank">MIT License</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </footer>
+    </div>
     </div>
 
 
@@ -402,6 +405,6 @@
 
     <!-- Argon JS -->
     <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
-</body>
+    </body>
 
 </html>

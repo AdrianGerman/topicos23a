@@ -176,7 +176,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="{{ route('user.index') }}">
+                                    <a class="nav-link" href="{{ route('user.index') }}">
                                         {{ __('Gestión de usuarios') }}
                                     </a>
                                 </li>
@@ -190,7 +190,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('products') }}">
+                        <a class="nav-link active" href="{{ route('products') }}">
                             <i class="ni ni-archive-2 text-default"></i>
                             <span class="nav-link-text">Productos</span>
                         </a>
@@ -200,7 +200,6 @@
                             <i class="ni ni-delivery-fast text-pink"></i> {{ __('Proveedores') }}
                         </a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('icons') }}">
                             <i class="ni ni-planet text-blue"></i> {{ __('Iconos') }}
@@ -300,10 +299,10 @@
                         <div class="card-header border-0">
                             <div class="row align-items-center">
                                 <div class="col-8">
-                                    <h3 class="mb-0">Usuarios</h3>
+                                    <h3 class="mb-0">Productos</h3>
                                 </div>
                                 <div class="col-4 text-right">
-                                    <a href="/create" class="btn btn-sm btn-primary">Agregar usuario</a>
+                                    <a href="/create_product" class="btn btn-sm btn-primary">Agregar productos</a>
                                 </div>
                             </div>
                         </div>
@@ -316,36 +315,38 @@
                                 <thead class="thead-light">
                                     <tr>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Fecha de creación</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Marca</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                        @foreach ($users as $user)
-                                            <tr>
-                                                <td>{{ $user -> name }}</td>
-                                                <td>{{ $user -> email }}</td>
-                                                <td>{{ $user -> created_at }}</td>
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#"
-                                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="{{route('user.edit', $user->id) }}">Editar</a>
-                                                            <a class="dropdown-item" href="{{route('user.delete', ['id' => $user->id])}}">Eliminar</a>
+                                    @foreach ($productos as $producto)
+                                <tr>
+                                    <td>{{ $producto->name }}</td>
+                                    <td>{{ $producto->description }}</td>
+                                    <td>{{ $producto->stock }}</td>
+                                    <td>{{ $producto->price }}</td>
+                                    <td>{{ $producto->marca }}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                            <a class="btn btn-sm btn-icon-only text-light" href="#"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <a class="dropdown-item" href="{{route('producto.edit', $producto->id) }}">Editar</a>
+                                            <a class="dropdown-item" href="{{route('producto.delete', ['id' => $producto->id])}}">Eliminar</a>
 
-                                                        </div>
-                                                    </div>
-                                                </td>
+                                            </div>
+                                        </div>
+                                    </td>
 
-                                            </tr>
-                                        @endforeach
-
-
+                                </tr>
+                            @endforeach
                                 </tbody>
                             </table>
                         </div>
