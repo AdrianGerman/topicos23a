@@ -45,6 +45,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('user/delete/{id}', 'App\Http\Controllers\UserController@delete') ->name('user.delete');
     Route::get('user/{id}/edit', 'App\Http\Controllers\UserController@edit') ->name('user.edit');
     Route::put('user/{id}', 'App\Http\Controllers\UserController@update') ->name('user.update');
+    Route::get('user/{id}/show', 'App\Http\Controllers\UserController@show') ->name('user.show');
+
 
 
 
@@ -54,6 +56,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('clientes/delete/{id}', 'App\Http\Controllers\ClientController@delete') ->name('cliente.delete');
     Route::get('clientes/{id}/edit', 'App\Http\Controllers\ClientController@edit') ->name('cliente.edit');
     Route::put('clientes/{id}', 'App\Http\Controllers\ClientController@update') ->name('cliente.update');
+    Route::get('clientes/{id}/show', 'App\Http\Controllers\ClientController@show') ->name('cliente.show');
+
 
 
 
@@ -63,6 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('productos/delete/{id}', 'App\Http\Controllers\ProductController@delete') ->name('producto.delete');
     Route::get('productos/{id}/edit', 'App\Http\Controllers\ProductController@edit') ->name('producto.edit');
     Route::put('productos/{id}', 'App\Http\Controllers\ProductController@update') ->name('producto.update');
+    Route::get('productos/{id}/show', 'App\Http\Controllers\ProductController@show') ->name('producto.show');
+
 
 
 
@@ -73,6 +79,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('proveedores/delete/{id}', 'App\Http\Controllers\VendorController@delete') ->name('vendor.delete');
     Route::get('proveedores/{id}/edit', 'App\Http\Controllers\VendorController@edit') ->name('vendor.edit');
     Route::put('proveedores/{id}', 'App\Http\Controllers\VendorController@update') ->name('vendor.update');
+    Route::get('proveedores/{id}/show', 'App\Http\Controllers\VendorController@show') ->name('vendor.show');
+
 
 
 

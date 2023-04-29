@@ -67,5 +67,11 @@ class VendorController extends Controller
         $provider = Proveedores::findOrFail($id);
         return view('proveedores.edit', compact('provider'));
     }
+    public function show($id)
+    {
+        $provider = Proveedores::find($id);
+        return view('proveedores.show', compact('provider'));
+
+    }
 
 }

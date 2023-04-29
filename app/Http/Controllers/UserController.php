@@ -67,13 +67,11 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6|confirmed',
         ]);
         //Actualizar datos
         $usuario = User::findOrFail($id);
         $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
-        $usuario->password = Hash::make($request->input('password'));
         $usuario->save();
         return redirect('users');
     }
@@ -82,6 +80,13 @@ class UserController extends Controller
     {
         $usuario = User::findOrFail($id);
         return view('users.edit', compact('usuario'));
+    }
+
+    public function show($id)
+    {
+        $usuario = User::find($id);
+        return view('users.show', compact('usuario'));
+
     }
 
 
