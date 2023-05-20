@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+  <title>Laravel Icons</title>
   <!-- Favicon -->
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
   <!-- Fonts -->
@@ -1276,28 +1276,30 @@
         <div class="row align-items-center justify-content-lg-between">
           <div class="col-lg-6">
             <div class="copyright text-center text-xl-left text-muted">
-              &copy; {{ now()->year }} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1"
-                target="_blank">Creative Tim</a> &amp;
-              <a href="https://www.updivision.com" class="font-weight-bold ml-1" target="_blank">Updivision</a>
+              &copy; {{ now()->year }} <a href="https://www.linkedin.com/in/adrian-german/"
+                class="font-weight-bold ml-1" target="_blank">Creado por</a>
+              <a href="https://www.linkedin.com/in/adrian-german/" class="font-weight-bold ml-1"
+                target="_blank">Adrian German</a>
             </div>
           </div>
           <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
               <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
+                <a href="" class="nav-link" target="_blank">Adrian German</a>
               </li>
               <li class="nav-item">
-                <a href="https://www.updivision.com" class="nav-link" target="_blank">Updivision</a>
+                <a href="https://github.com/AdrianGerman" class="nav-link" target="_blank">Mi GitHub</a>
               </li>
               <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                <a href="https://www.linkedin.com/in/adrian-german/" class="nav-link" target="_blank">Acerca de
+                  mi</a>
               </li>
               <li class="nav-item">
-                <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
+                <a href="https://www.linkedin.com/in/adrian-german/" class="nav-link" target="_blank">Mi perfil</a>
               </li>
               <li class="nav-item">
-                <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md"
-                  class="nav-link" target="_blank">MIT License</a>
+                <a href="https://www.linkedin.com/in/adrian-german/" class="nav-link"
+                  target="_blank">Reconocimientos</a>
               </li>
             </ul>
           </div>
